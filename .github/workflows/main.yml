@@ -18,7 +18,7 @@ jobs:
       - run: jq <<< '${{ toJSON(github) }}'
 
   default:
-    if: ${{ github.event_name != 'push' }} && ${{ github.event_name != 'pull_request' }}
+    if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - run: jq <<< '${{ toJSON(github) }}'
