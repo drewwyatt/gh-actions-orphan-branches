@@ -10,15 +10,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: jq <<< '${{ toJSON(github) }}'
+      - run: echo '${{ toJSON(github) }}' > artifact.json
+      - name: Upload JSON
+        uses: actions/upload-artifact@v2
+        with:
+          path: artifact.json
 
   pull_requst_closed:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - run: jq <<< '${{ toJSON(github) }}'
+      - run: echo '${{ toJSON(github) }}' > artifact.json
+      - name: Upload JSON
+        uses: actions/upload-artifact@v2
+        with:
+          path: artifact.json
 
   default:
     if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - run: jq <<< '${{ toJSON(github) }}'
+      - run: echo '${{ toJSON(github) }}' > artifact.json
+      - name: Upload JSON
+        uses: actions/upload-artifact@v2
+        with:
+          path: artifact.json
