@@ -1,0 +1,16 @@
+name: Orphan Workflow
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  default:
+    name: Orphan Cron
+    runs-on: ubuntu-latest
+    steps:
+      - run: jq <<< '${{ toJSON(github) }}'
+      - run: echo '${{ toJSON(github) }}' > artifact.json
+      - name: Upload JSON
+        uses: actions/upload-artifact@v2
+        with:
+          path: artifact.json
