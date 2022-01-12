@@ -3,6 +3,8 @@ on:
   pull_request:
     types: [closed]
   push:
+  schedule:
+    - cron: 5,10,15 * * * *
 
 jobs:
   push:
